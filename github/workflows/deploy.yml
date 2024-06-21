@@ -31,4 +31,4 @@ jobs:
           publish_dir: ./public
 
       - name: Inject API key
-        run: echo "window.apiKey = '${{ secrets.API_Key }}';" > ./public/apiKey.js
+        run: echo "window.apiKey = '${{ secrets.API_KEY }}';" > ./public/apiKey.js
