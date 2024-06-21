@@ -11,14 +11,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v3  # Use Node.js 20 compatible version
 
       - name: Create apiKey.js with secret
         run: echo "window.apiKey = '${{ secrets.API_KEY }}';" > ./apiKey.js
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3 
+        uses: peaceiris/actions-gh-pages@v4  # Use Node.js 20 compatible version
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
 
+      - name: Debug git status
+        run: |
+          git status
+          git log -1
