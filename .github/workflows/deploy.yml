@@ -3,26 +3,21 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - github_deploy
+      - main  # Adjust this to your main branch name
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3  # Use Node.js 20 compatible version
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Create apiKey.js with secret
         run: echo "window.apiKey = '${{ secrets.API_KEY }}';" > ./apiKey.js
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4  # Use Node.js 20 compatible version
+        uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-
-      - name: Debug git status
-        run: |
-          git status
-          git log -1
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages  # Branch to deploy to (usually gh-pages)
+          FOLDER: .  # Root folder since no build process is needed
