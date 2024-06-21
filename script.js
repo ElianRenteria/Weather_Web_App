@@ -2,7 +2,7 @@ async function getWeather() {
     const city = document.getElementById('city').value;
     const apiKey = window.apiKey;
     const coordinates_url = `https://api.api-ninjas.com/v1/geocoding?city=${city}`;
-
+    console.log(apiKey)
     try {
         const coordinate_data = await fetch(coordinates_url, {
             method: 'GET',
